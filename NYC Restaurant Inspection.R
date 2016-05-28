@@ -1,7 +1,7 @@
 #Download and Choose Where NYC Restaurant Health Inspections from NYC Open Data Is Located On Your Local Computer
 csv.data <- read.csv(file.choose())
 
-#Change Data in "GRADE.DATE" column to be of the "Date" Class and Sort by most recent 
+#Change Data in "GRADE.DATE" column to be of the "Date" Class and Sort by most recent
 csv.data$GRADE.DATE <- as.Date(csv.data$GRADE.DATE, "%m/%d/%y")
 ordered_by_date <- csv.data[order(csv.data$GRADE.DATE, decreasing = TRUE),]
 
@@ -17,7 +17,8 @@ library(RSvgDevice)
 counts <- count(unique_restaurants, c("GRADE", "BORO"))
 counts <- counts[order(counts$GRADE, counts$BORO),]
 ggplot(counts, aes(x=GRADE, y=freq)) +geom_point(aes(color=BORO))
-
+current_project_path <- "/Users/matthewrubenstein/github/NYC-Restaurant-Inspection-Analysis" #Change this variable to equal the path where this folder where this script is stored on your local computer
+ggsave(filename = "grades_of_restaurants_in_various_boros.png", path = current_project_path)
 
 #Function that Takes Name and Optional Parameter Zipcode as Input and Returns a Data Frame that is a Subset of "unique_restaurants"
 restaurant_inspections <- function(name, zipcode=NULL){
@@ -28,4 +29,3 @@ restaurant_inspections <- function(name, zipcode=NULL){
   }
   return(query[c("DBA", "BUILDING", "STREET", "GRADE")])
 }
-
