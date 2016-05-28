@@ -17,7 +17,7 @@ library(RSvgDevice)
 counts <- count(unique_restaurants, c("GRADE", "BORO"))
 counts <- counts[order(counts$GRADE, counts$BORO),]
 ggplot(counts, aes(x=GRADE, y=freq)) +geom_point(aes(color=BORO))
-current_project_path <- "/Users/matthewrubenstein/github/NYC-Restaurant-Inspection-Analysis" #Change this variable to equal the path where this folder where this script is stored on your local computer
+current_project_path <- "/Users/matthewrubenstein/github/NYC-Restaurant-Inspection-Analysis" #Change this variable to equal the path where this folder is stored on your local computer
 ggsave(filename = "grades_of_restaurants_in_various_boros.png", path = current_project_path)
 
 #Function that Takes Name and Optional Parameter Zipcode as Input and Returns a Data Frame that is a Subset of "unique_restaurants"
